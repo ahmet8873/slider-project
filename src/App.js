@@ -1,23 +1,34 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+import data from './data'
+import { useState} from 'react'
+import Rewievs from './components/Rewievs'
+
 function App() {
+
+  const[people,setPeople]=useState(data)
+  const[value,setValue]=useState(0)
+
+  
+    
+  const checkNumber=(number)=>{
+     if(number<0){
+      return people.length-1
+     }
+     if(number>people.length-1){
+      return 0
+     }
+     return number
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+       <div className="header">
+        <span className='slash'>/</span> <h1>Rewievs</h1>
+       </div>
+       <Rewievs people={people} value={value} setValue={setValue} checkNumber={checkNumber} />
+      
     </div>
   );
 }
